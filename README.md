@@ -79,7 +79,7 @@ Docker is written in the `Go programming language` and takes `advantage of sever
 
 - `docker run busybox:version` -- repositoryName:tag (pull image and store in local box then create container and run container)
 - `docker run busybox:1.24 echo "hello world"` -- run command afer downloading image and create a container and run command in that container
-- `docker images` -- images in local box
+- `docker images ls` -- images in local box
 - `docker run busybox:1.24 ls /` -- list out all directory
 - `docker run -i -t busybox:1.24` -- interactive(-i) enter in container (cmd excess to it) , alow input output (-t)
 
@@ -143,10 +143,15 @@ kernel -- bootfs---base Image-- image -- image--- container
         - docker build command takes the path to the build context as an argument
         - when build starts, docker client would pack all the files in the `build context into a tarball` then `transfer the tarball file to the daemon`.
         - -f to path of dockerFile
-    - Each RUN command will execute the command on the top writable layer of the container, then commit the container as a new image.
+    - Each `RUN` command will execute the command on the top writable layer of the container, then commit the container as a new image.
     - The new image is used for the next step in the Dockerfile. So each RUN instructions will create a new image layer.
     - It is recommended to chain the RUN instructions in the Dockerfile to reduce the number of image layers it creates.
     - `docker scan` -- for synk test against images to find vulnerabilities and learn how to fix them.
+    - `CMD` instruction specifies what command you want to run when the container starts up.
+    - If we don't specify CMD instruction in the Dockerfile, Docker will use the default command defined in the base image.
+    - the CMD instruction doesn't run when building the image, it only runs when the container starts up.
+    - You can specify the command in either exec form which is preferred or in shell form.
+
     
 
     
