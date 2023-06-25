@@ -146,6 +146,7 @@ kernel -- bootfs---base Image-- image -- image--- container
     - Each RUN command will execute the command on the top writable layer of the container, then commit the container as a new image.
     - The new image is used for the next step in the Dockerfile. So each RUN instructions will create a new image layer.
     - It is recommended to chain the RUN instructions in the Dockerfile to reduce the number of image layers it creates.
+    - `docker scan` -- for synk test against images to find vulnerabilities and learn how to fix them.
     
 
     
