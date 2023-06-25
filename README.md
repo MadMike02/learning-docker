@@ -151,7 +151,12 @@ kernel -- bootfs---base Image-- image -- image--- container
     - If we don't specify CMD instruction in the Dockerfile, Docker will use the default command defined in the base image.
     - the CMD instruction doesn't run when building the image, it only runs when the container starts up.
     - You can specify the command in either exec form which is preferred or in shell form.
-
+    - DOCKER CACHE 
+        - Each time docker executes an instruction it builds a new image layer.
+        - The next time, if the instruction doesn't change, Docker will simply reuse the existing layer.
+        - `docker build -t vendor/image . --no-cache=true` -- for invalidating cache
+    - Copy instruction
+        `COPY` instruction copies new files or directories from build context and adds them to the file system of the container.
     
 
     
