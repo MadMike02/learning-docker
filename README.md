@@ -157,6 +157,14 @@ kernel -- bootfs---base Image-- image -- image--- container
         - `docker build -t vendor/image . --no-cache=true` -- for invalidating cache
     - Copy instruction
         `COPY` instruction copies new files or directories from build context and adds them to the file system of the container.
+    - ADD instruction
+        - `ADD` instruction can not only copy files but also allow you to download a file from internet and copy to the container.
+        - ADD also can automatically unpack compressed files.
+        - Use COPY for the sake of transparency, unless you're absolutely sure you need ADD.
+Pushing to docker hub
+- docker tag imageId dockerId(form signin dockerhub)/imageName:tagName
+- docker login --username=abc
+- docker push repostiroyNmae:tag
     
 
     
