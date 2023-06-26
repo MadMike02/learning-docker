@@ -175,4 +175,10 @@ Pushing to docker hub
 - `docker exec -it containerId bash(commandName)` --- running commands in container
 - `ps axu` -- running process
 
+- implementing redis
+## redis
+- In-memory data structure store, used as database, cache and message broker.
+- Built-in applcation and different levels of on-disk persistence.
+- widely used in lots of critical products in the field such a twitter timeline service and facebook news feed.
+
     
