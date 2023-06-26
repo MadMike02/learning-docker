@@ -181,4 +181,13 @@ Pushing to docker hub
 - Built-in applcation and different levels of on-disk persistence.
 - widely used in lots of critical products in the field such a twitter timeline service and facebook news feed.
 
-    
+## DOCKER CONTAINER LINKS
+allow containers to look for other container and link a connection between them without any exposore of network ports.
+two containers -- source and recepient 
+
+`docker run -d --name redis redis:3.2.0` --- start a container names redis from redist image
+`docker build -t dockerapp:v0.3 .` -- building image for python from dockerfile
+`docker run -d -p 5000:5000 --link redis imageName` -- starting container with link to redis container & in code specified the host of redis as container name 
+
+- main use of docker container links is when we build an application with a microservice architecture, we are able to run many independent components in different containers.
+- Docker creates a secure tunnel between the containers that doesn't need to expose any ports externally on the container.

@@ -7,3 +7,7 @@
 `docker image list` -- all images in local
 `docker history imageName:tagName` -- image layer info
 `docker build -t vendorName/newImagename .` --- building new image from Dockerfile
+`docker run -d -p 5000:5000 --link redis imageName` -- linking container
+
+`docker stop containerId` -- stop container
+`docker exec -it containerID bash(commandNmae)` -- run commands on running container
