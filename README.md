@@ -165,6 +165,14 @@ Pushing to docker hub
 - docker tag imageId dockerId(form signin dockerhub)/imageName:tagName
 - docker login --username=abc
 - docker push repostiroyNmae:tag
-    
+
+## containers
+- Dockerize web application
+- Create Dockerfile in root directory with required specs
+- `docker build -t vendorName/imageName:tag .` -- build image
+- `docker run -i -p 5000:5000 imageId` --- run image in a container with container port 5000 bind to system 5000 port
+- `docker-machine ls` -- default docker machine info
+- `docker exec -it containerId bash(commandName)` --- running commands in container
+- `ps axu` -- running process
 
     
