@@ -11,3 +11,4 @@
 
 `docker stop containerId` -- stop container
 `docker exec -it containerID bash(commandNmae)` -- run commands on running container
+`docker exec -it containerId bash` --- enter inside container

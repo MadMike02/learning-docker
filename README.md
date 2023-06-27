@@ -191,3 +191,36 @@ two containers -- source and recepient
 
 - main use of docker container links is when we build an application with a microservice architecture, we are able to run many independent components in different containers.
 - Docker creates a secure tunnel between the containers that doesn't need to expose any ports externally on the container.
+
+## Docker compose
+- previously we starting both container seprately and link them to automate this process we use docker compose
+- `docker-compose version`
+- create docker-compose.yaml file
+- Version-- version of docker compose (uses set of rules)
+- Services -- steps to do
+- dockerapp - containerName
+- build - path of dockerfile (. current directory)
+- ports - expose port of container to local machine
+    (syntax--> -"containerPort":"localPort")
+- depends_on - linking container (the parent will be started first)
+- redis: containerName
+- image: redis:3.2.0 --- make container from this image
+
+- version 3 of docker compose removes the mentioning of linking the containers. In 2 and above version each container under services can communite between them.
+
+- `docker-compose up` (build all containers and run)
+
+- Docker compose is a very handy tool to quickly get docker environment up and running.
+
+- Docker compose uses yaml files to store the configuration of all the containers, which removes the burden of maintain our scripts for docker orchestration.
+
+## Docker compose workflow
+
+- `docker-compose up -d` -- run compose command in background. --- by default it will only create image if the image is not present
+- `docker-compose ps` -- list containers manage by docker compose
+- `docker-compose logs` -- logs of all containers
+- `docker-compose logs containerName` -- log of that container
+- `docker-compose stop` -- all containers stop 
+- `docker-compose start` -- all containers start
+- `docker-compose rm --all` -- all containers remove
+- `docker-compose build` -- rebuild all images 
