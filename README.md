@@ -220,7 +220,7 @@ two containers -- source and recepient
 - `docker-compose ps` -- list containers manage by docker compose
 - `docker-compose logs` -- logs of all containers
 - `docker-compose logs containerName` -- log of that container
-- `docker-compose stop` -- all containers stop 
+- `docker-compose stop` -- all containers stop withour removing them
 - `docker-compose start` -- all containers start
 - `docker-compose rm --all` -- all containers remove
 - `docker-compose build` -- rebuild all images 
