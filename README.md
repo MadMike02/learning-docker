@@ -224,3 +224,57 @@ two containers -- source and recepient
 - `docker-compose start` -- all containers start
 - `docker-compose rm --all` -- all containers remove
 - `docker-compose build` -- rebuild all images 
+
+## Docker networking
+
+- Default docker uses host machine network then docker daemon is installed on. During installing docker creates a
+Bridge (docker0) between the containers and host. The containers use this bridge to connect with each other and outside network using host internet.
+
+- Types of networks: 
+    - Closed Network/ None network
+    - Bridge Network
+    - Host Network
+    - Overlay Network
+- `docker network ls` -- all network created by docker
+- `docker network inspect bridge(networkName)`
+- ### Close/None network
+    - It creates a closed container which doesn't have acces to any network.
+    - `docker run -d --net none busybox`
+    - if use `ping 8.8.8.8` -- that connects to goole dns server inside the command line of container then it will not get connected.
+    - `ifconfig` -- will show local loopback which means no network and ip will be 127.0.0.1
+    - Provides maximum level of network protextion. As there is no internet then breaching container is not possible.
+    - Not a good choice if network or internet connection is required. (example - HTTP requests)
+    - Suites well where the container require the maximum level of network security and network access is not necessary.
+- ### Bridge Network
+ - Default type of network
+ - `docker run -d --name container_1(containerName) busybox`
+ - default range of bridge network - 172.17.0.0 -- 172.17.255.255 --->>> containers will be assigned IP in these ranges only.
+ - `ping IP` -- if we ping other container from one it will be pinged via private network between each other.
+ - If there are two bridge network then containers of other bridge network cannot be connected with containers in different bridge network.
+ - `docker netwok create --driver bridge my_bridge_network` (create new bridge network)
+ - `docker run -d --name containerName --net my_bridge_network` --- create container in new network
+ - `docker network connect bridge container_3` --by this the container in another network will also get connected with brige network. It will get connected with its previous also.
+ - `docker network disconnect bridge container_3` -- removing container from network.
+ - In this network container have access to two network interfaces
+    - A loopback interface -- for within connections
+    - A private interface -- for host connections 
+- All containers in the same bridge network can communicate with each other.
+- COntainers from different bridge networks can't connect with each other by default.
+- Reduces the level of network isolation in favor of better outside connectivity.
+- Most suitable where you want to set up a relatively small network on a single host.
+- ### Host and overlay Network
+- HOST NETWORK
+    - THe least protected network model, it adds a container on the host's network stack.
+    - COntaiers deployed on the host stack have full access to the host's interface.
+    - These type of containers are called `open containers`.
+    - `docker run -d --name container_o --net host busybox`
+    - Minimum network securtiy level.
+    - No isolation on this type of open containers, thus leave the container widely unprotected.
+    - Containers running in the host network stack should see a higher level of performance than those traversing the docker0 bridge and iptables port mappings.
+- OVERLAY NETWORK (widely used on productions)
+- https://docs.docker.com/engine/swarm/#create-a-swarm-cluster
+    - And for distributed systems
+    - Supports multi-host network out of the box.
+    - Requires some pre-existing conditios before it can be created.
+        - Running docker engine in `swarm mode`.
+        - A key-value store such as `consul`.
