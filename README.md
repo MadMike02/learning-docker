@@ -278,3 +278,12 @@ Bridge (docker0) between the containers and host. The containers use this bridge
     - Requires some pre-existing conditios before it can be created.
         - Running docker engine in `swarm mode`.
         - A key-value store such as `consul`.
+
+- ### Docker containers networks with docker compose
+- default network is bridge
+-   defining network in docker compose file
+    ```
+    networks:
+        my_net(networkName):
+            driver: bridge
+    ```
