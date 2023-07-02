@@ -312,3 +312,17 @@ Bridge (docker0) between the containers and host. The containers use this bridge
                 foo: "1"
                 bar: "2"
     ```
+
+## CREATING A CONTINOUS INTEGRATION PIPELINE
+
+### Write and run unit Tests inside containers
+- Unit tests should test some basic functionality of our docker app code, with no reliance on external services.
+- Unit tests should run as quickl as possible so that developers can iterate much faster withour being blocked by wating for the tests results.
+- Docker containers can spin up in seconds and can create a clean and isolated environment which is great tool to run unit tests with.
+- `docker run dockerapp python test.py` --> run command one time in container(dockerapp)
+
+ICORPORTAING UNIT TESTS INTO DOCKER IMAGES-- 
+- pros: a single image is used through development, testing and production, which greatly ensures the reliablity of our tests.
+- Cons: it increases the size of the image.
+
+
