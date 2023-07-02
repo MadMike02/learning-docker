@@ -325,4 +325,25 @@ ICORPORTAING UNIT TESTS INTO DOCKER IMAGES--
 - pros: a single image is used through development, testing and production, which greatly ensures the reliablity of our tests.
 - Cons: it increases the size of the image.
 
+### Intro to Continuos integrations:
+- Continous integration is a software engineering practice in which isolated changes are immediately tested and reported when they are added to a larger code base.
+- The goal of CI is to provide rapid feedback so that if a defect is introduced into the code base, it can be identified and corrected as soon as possible.
 
+- Our CI pipeline-
+ code ---> github <=> CircleCI (hosted CI server)
+
+ URL of the Github account to fork:
+
+https://github.com/jleetutorial/dockerapp
+
+Checking for existing SSH keys:
+
+https://help.github.com/articles/checking-for-existing-ssh-keys/
+
+Generating a new SSH key and adding it to the ssh-agent:
+
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+Adding a new SSH key to your GitHub account:
+
+https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
