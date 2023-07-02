@@ -287,3 +287,28 @@ Bridge (docker0) between the containers and host. The containers use this bridge
         my_net(networkName):
             driver: bridge
     ```
+- Isolating networks between container.
+    ```
+    services:
+        proxy: 
+            build: ./proxy
+            networks:
+                - front
+        app:
+            build: ./app
+            networks:
+                - front
+                - back
+        db:
+            images: postgres
+            networks:
+                - back
+    networks:
+        front:
+            driver: custom-driver-1
+        back:
+            driver: custom-driver-2
+            driver-opts:
+                foo: "1"
+                bar: "2"
+    ```
