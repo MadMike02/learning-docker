@@ -347,3 +347,9 @@ https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-s
 Adding a new SSH key to your GitHub account:
 
 https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+
+### CI with circle CI
+- create account and link repo in new project
+- add `.circleci/config.yaml` in root directory and add steps accordingly.
+- add environment variables for that project in settings sections and link them in yaml file by `$ENV_VAR_NAME`
+- The build will start automatically as soon as we push something on git.  
