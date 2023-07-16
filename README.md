@@ -354,3 +354,36 @@ https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 - add environment variables for that project in settings sections and link them in yaml file by `$ENV_VAR_NAME`
 - The build will start automatically as soon as we push something on git.  
 - CI repo link -- https://github.com/MadMike02/dockerCI
+
+## Deploying to production
+### What is Docker Machine?
+- Docker Machine is a tool that lets you install Docker Engine on virtual hosts, and manage the hosts with docker-machine commands. You can use Machine to create Docker hosts on your local Mac or Windows box, on your company network, in your data center, or on cloud providers like Azure, AWS, or Digital Ocean.
+- install docker-machine
+- `docker-machine create --driver digitalocean --digitalocean-access-token tokenCreatedInAPIdigitaloceanPAT docker-app-machine`
+- above command will link to digitalocean and create a new VM(droplet) with docker engine included.
+- `docker-machine env docker-app-machine` -- list out environment variables of host connected
+- `eval $(docker-machine env docker-app-machine)` -- setting up environment variables in host
+- `docker info` - info of new VM
+- `cp docker-compose.yml prod.yml` -- create prod.yml file to run on production
+- `docker-compose -f prod.yml up -d` --- deploy all the services in production
+- `docker-machine ls` -- list out all VMs
+- https://docs.docker.com.zh.xy2401.com/v17.09/machine/examples/ocean/
+- `docker-machine ssh docker-app-machine` -- enter in terminal access
+## Docker swarm
+- when there are so many containers for large scale applications.
+- Docker swarm is a tool that clusters many docker engines and scedules containers.
+- Docker swarm decides which host to run tune conatiner based on your scheduling methods.
+- Node -> instance of docker enginer participating in swarm
+- manager node --> dispatches unit of work called tasks to worker nodes.
+- ### working of swarm cluster
+- docker swarm is connected to all hosts and our machine to connected to the swarm known as swarm cluster.
+- To deploy your application to a swarm, you submit your service to a manager node.
+- The manager node dispatches units of work called tasks to worker nodes.
+- Manager nodes also perform the orchestration and cluster management functions required to maintain the desies state of the swarm.
+- Worker nodes receive and execute tasks dispatches from manager nodes.
+- An agent runs on each worked node and reports on the tasks assigned to it. The worker node notifies the manager node of the current state of its assigned tasks so that the manager can maintain the desired state of each worker.
+- create two VMs .
+- assin first one as swarm manager.
+- `docker swarm init` -- initialize a swarm. The docker engne targeted by this command beomes a manager in the newly created single-node swarm.
+- `docker swarm join` - join a swarm as a swarm node.
+- `docker swarm leave` - leave a swarm
